@@ -226,11 +226,11 @@ void loop() {
   int myVal = digitalRead(pwmPin);
 
   //If you find a change
-  if (myVal == HIGH) //Сравнить что есть значения
+  if (myVal == HIGH) //Compare what's available value on pin
     {
-    digitalWrite(LedPin, HIGH); //Моргнуть
-    if (myVal != prevVal) //Сравнить что значение изменилось
-      {// если отлично от prevVal
+    digitalWrite(LedPin, HIGH); //Blink
+    if (myVal != prevVal) //Compare what's available value on pin
+      {// if different from prevVal
       h = tt;
       tl = h - l;
       prevVal = myVal;    
@@ -239,7 +239,7 @@ void loop() {
   else 
     {
     digitalWrite(LedPin, LOW);
-    if (myVal != prevVal) //Сравнить что значение изменилось
+    if (myVal != prevVal) //Compare what the value has changed
       {
       l = tt;
       th = l - h;
@@ -249,7 +249,7 @@ void loop() {
       oled.clear(PAGE);
       oled.setCursor(0, 0);
       oled.print("CO2=" + String(ppm));
-      if(ppm > 1000)
+      if(ppm > 1400)
         {
         oled.setCursor(0, 8);
         oled.print("Air room?");
@@ -261,7 +261,7 @@ void loop() {
   
 if (is_new_command) 
   {
-  Serial.println(found_command);
+  //Serial.println(found_command);
   if (found_command[0] == 'y') 
     { 
     oled.setCursor(0, 16);
